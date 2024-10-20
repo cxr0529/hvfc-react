@@ -1,122 +1,91 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./Navbar.css";
+import "./navbar.css";
 
 const Navbar = () => {
     const [click, setClick] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
     const [showDropdown, setShowDropdown] = useState(false);
     const handleClick = () => setClick(!click);
 
-    const handleLogout = () => {
-        sessionStorage.removeItem("auth-token");
-        sessionStorage.removeItem("name");
-        sessionStorage.removeItem("email");
-        sessionStorage.removeItem("phone");
-        // remove email phone
-        localStorage.removeItem("doctorData");
-        setIsLoggedIn(false);
-        // setUsername("");
-
-        // Remove the reviewFormData from local storage
-        for (let i = 0; i < localStorage.length; i++) {
-            const key = localStorage.key(i);
-            if (key.startsWith("reviewFormData_")) {
-                localStorage.removeItem(key);
-            }
-        }
-        setEmail('');
-        window.location.reload();
-    }
     const handleDropdown = () => {
         setShowDropdown(!showDropdown);
     }
-    useEffect(() => {
-        const storedemail = sessionStorage.getItem("email");
-
-        if (storedemail) {
-            setIsLoggedIn(true);
-            setUsername(storedemail);
-        }
-    }, []);
-
-    useEffect(() => {
-        // Check if the user is already logged in
-        const storedUsername = sessionStorage.getItem("name");
-
-        if (storedUsername) {
-            setIsLoggedIn(true);
-            setUsername(storedUsername);
-        }
-    }, []);
+    
     return (
-        <nav>
-            <div className="nav__logo">
-                <Link to="/">
-                    StayHealthy <i style={{ color: '#2190FF' }} className="fa fa-user-md"></i></Link>
-                <span>.</span>
-            </div>
-            <div className="nav__icon" onClick={handleClick}>
-                <i className={click ? "fa fa-times" : "fa fa-bars"}></i>
-            </div>
-            <ul className={click ? 'nav__links active' : 'nav__links'}>
-                <li className="link">
-                    <Link to="/">Home</Link>
-                </li>
-                <li className="link">
-                    <Link to="/Booking">Appointments</Link>
-                </li>
-                {/* <li className="link"> */}
-                    {/* <Link to="/healthblog">Health Blog</Link> */}
-                {/* </li> */}
-                <li className="link">
-                    <Link to="/Instant">Instant Consultation</Link>
-                </li>
-                <li className="link">
-                    <Link to="/Reviews">Reviews</Link>
-                </li>
-                {isLoggedIn ? (
-                    <>
-                        <li onClick={handleDropdown} className="link welcome-user">
-                            <p>
-                                Welcome, {username}
-                            </p>
-                            {showDropdown && (
+        <header>
+            <nav classNameName="navbar fixed-top navbar-expand-lg bg-body-tertiary">
+                <div classNameName="container-fluid">
+                    <a classNameName="navbar-brand" href="#"><img src="images/logo.jpg" alt="Logo">&nbsp;Harrisville VFC</a>
+                    <button classNameName="navbar-toggler" id="navbarToggle" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span classNameName="navbar-toggler-icon"></span>
+                    </button>
+                    <div classNameName="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                        <ul classNameName="navbar-nav">
+                            <li classNameName="nav-item">
+                                <a className="nav-link active" aria-current="page" href="index.html">Home</a>
+                            </li>
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">About Us</a>
                                 <ul className="dropdown-menu">
-                                    <li>
-                                        <Link to="/Profile">Your Profile</Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/Reports">Your Reports</Link>
-                                    </li>
+                                    <li><a className="dropdown-item" href="#" onclick="$hvfc.loadContact()">Contact Us</a></li>
+                                    <li><a className="dropdown-item" href="#" onclick="$hvfc.loadHistory()">History</a></li>
+                                    <li><a className="dropdown-item" target="_blank" href="docs/HVFC-BY-LAWS-2023.pdf" target>By-Laws</a></li>
+                                    <li><a className="dropdown-item" href="#" onclick="$hvfc.loadConstruction()">Call History</a></li>
+                                    <li><a className="dropdown-item" href="#" onclick="$hvfc.loadApparatus()">Apparatus</a></li>
                                 </ul>
-                            )}
-                        </li>
-                        <li className="link">
-                            <button className="btn2" onClick={handleLogout}>
-                                Logout
-                            </button>
-                        </li>
-
-                    </>
-                ) : (
-                    <>
-                        <li className="link">
-                            <Link to="/Sign_Up">
-                                <button className="btn1">Sign Up</button>
-                            </Link>
-                        </li>
-                        <li className="link">
-                            <Link to="/Login">
-                                <button className="btn1">Login</button>
-                            </Link>
-                        </li>
-                    </>
-                )}
-            </ul>
-        </nav>
+                            </li>
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Member Info</a>
+                                <ul className="dropdown-menu">
+                                    <li><a className="dropdown-item" href="#" onclick="$hvfc.loadMembers()">Current Members</a></li>
+                                    <li><a className="dropdown-item" href="#" onclick="$hvfc.loadLifetime()">Lifetime Members</a></li>
+                                    <li><a className="dropdown-item" target="_blank" href="docs/HVFCMembershipApplication.pdf">Membership Application</a></li>
+                                </ul>
+                            </li>
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Hall Rental</a>
+                                <ul className="dropdown-menu">
+                                    <li><a className="dropdown-item" href="#" onclick="$hvfc.loadCalender()">Availability Calendar</a></li>
+                                    <li><a className="dropdown-item" target="_blank" href="docs/HallRentalFAQ.pdf">FAQ</a></li>
+                                    <li><a className="dropdown-item" href="#" onclick="$hvfc.loadRental()">Photo Gallery</a></li>
+                                    <li><a className="dropdown-item" target="_blank" href="docs/HVFC-RentalAgreement.pdf">Hall Rental Application</a></li>
+                                </ul>
+                            </li>
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Useful Links</a>
+                                <ul className="dropdown-menu">
+                                    <li><a className="dropdown-item" href="#" onclick="$hvfc.loadLinks()">Fire Departments</a></li>
+                                    <li><a className="dropdown-item" target="_blank" href="docs/AddressSignsOrderforms.pdf">Address Sign Order Form</a></li>
+                                </ul>
+                            </li>
+                            <!-- <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Photo Gallery</a>
+                                <ul className="dropdown-menu">
+                                    <li><a className="dropdown-item" href="#" onclick="$hvfc.loadConstruction()">Trucks</a></li>
+                                    <li><a className="dropdown-item" href="#" onclick="$hvfc.loadConstruction()">Personnel</a></li>
+                                    <li><a className="dropdown-item" href="#" onclick="$hvfc.loadConstruction()">Training</a></li>
+                                    <li><a className="dropdown-item" href="#" onclick="$hvfc.loadConstruction()">Fires</a></li>
+                                    <li><a className="dropdown-item" href="#" onclick="$hvfc.loadConstruction()">Accidents</a></li>
+                                    <li><a className="dropdown-item" href="#" onclick="$hvfc.loadConstruction()">Misc.</a></li>
+                                </ul>
+                            </li></ul> -->
+                            <li className="nav-item">
+                                <a className="nav-link" target="_blank" href="https://www.ready.gov/kids/games">Kid's Corner</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" target="_blank" href="https://www.facebook.com/hvfc1938"><img src="images/Facebook.png" alt="Facebook"></a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" target="_blank" href="https://www.instagram.com/hvfc1938"><img src="images/Instagram.png" alt="Instagram"></a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="tel: 7247354646">Give us a call</a>
+                            </li>
+                        </ul>
+                    </div><!--"end of collapse"-->
+                </div><!--"end of container"-->
+            </nav><!--"end of nav"-->
+        </header>
     );
 };
 
