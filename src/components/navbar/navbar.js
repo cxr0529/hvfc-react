@@ -10,7 +10,7 @@ function Navbar() {
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
         <Navbar fixed="top" />
-        <Navbar.Brand href="#home"><img className="d-inline-block align-top" src="../src/images/logo.jpg" alt="Logo">{' '}Harrisville VFC</Navbar.Brand>
+        <Navbar.Brand href="#home"><img className="d-inline-block align-top" src={'../src/images/logo.jpg'} alt="Logo"/>{' '}Harrisville VFC</Navbar.Brand>
         <Navbar.Toggle aria-controls="hvfc-navbar" />
         <Navbar.Collapse id="hvfc-navbar">
           <Nav className="me-auto">
@@ -44,8 +44,8 @@ function Navbar() {
               <NavDropdown.Item href="#apparatus">Accidents</NavDropdown.Item>
               <NavDropdown.Item href="#misc">Misc.</NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="https://www.facebook.com/hvfc1938" target="_blank"><img src="../src/images/Facebook.png" alt="Facebook"></Nav.Link>
-            <Nav.Link href="https://www.instagram.com/hvfc1938" target="_blank"><img src="../src/images/Instagram.png" alt="Instagram"></Nav.Link>
+            <Nav.Link href="https://www.facebook.com/hvfc1938" target="_blank"><img src={'../src/images/Facebook.png'} alt="Facebook" /></Nav.Link>
+            <Nav.Link href="https://www.instagram.com/hvfc1938" target="_blank"><img src={'../src/images/Instagram.png'} alt="Instagram" /></Nav.Link>
             <Nav.Link href="https://www.ready.gov/kids/games" target="_blank">Kids Zone</Nav.Link>
             <Nav.Link href="tel: 7247354646">Give us a call</Nav.Link>
           </Nav>
