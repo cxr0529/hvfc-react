@@ -17,7 +17,7 @@ function Navbar() {
             <NavDropdown title="About Us" id="about-us-dropdown">
               <NavDropdown.Item href="#contact">Contact Us</NavDropdown.Item>
               <NavDropdown.Item href="#history">History</NavDropdown.Item>
-              <NavDropdown.Item href="docs/HVFCBYLAWS2023.pdf" target="_blank" rel="noreferrer">ByLaws</NavDropdown.Item>
+              <NavDropdown.Item href="docs/HVFCBYLAWS2023.pdf" target="_blank" rel="noreferrer">By-Laws</NavDropdown.Item>
               <NavDropdown.Item href="#construction">Call History</NavDropdown.Item>
               <NavDropdown.Item href="#apparatus">Apparatus</NavDropdown.Item>
             </NavDropdown>
